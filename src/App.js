@@ -39,7 +39,7 @@ const DATA = {
 					selectedStyle: '2',
 					styles: [
 						{
-							id: '1'.
+							id: '1',
 							name: 'Small white squares',
 						},
 						{
@@ -61,30 +61,43 @@ const Paper = ({ className, ...props }) => (
 	<div className={classNames(className, 'paper')} {...props} />
 );
 
-const Projects = ({ projects }) => (
+const ProjectList = ({ list }) => (
+	<Paper>
+		{list.map((item, i) => (
+			<Link className="paper__row--link" to={'/project/' + item.id} key={i}>
+				<div>{item.name}</div>
+			</Link>
+		))}
+	</Paper>
+);
+
+const Dashboard = () => (
 	<>
-		<h1>Projects</h1>
-		<Paper>
-			{projects.map((project, i) => (
-				<Link className="paper__row--link" to={'/project/' + project.id} key={i}>
-					<div>{project.name}</div>
-				</Link>
-			))}
-		</Paper>
+		<h1>Projects</h1>		
+		<ProjectList list={DATA.projects} />
 	</>
 );
 
-const Directory = () => <Projects projects={DATA.projects} />;
+const DecisionList = ({ list }) => (
+	<Paper>
+		{list.map((item, i) => (
+			<div className="paper__row" key={i}>{item.name}</div>	
+		))}
+	</Paper>
+);
 
-const find = id => DATA.projects.find(project => project.id === id);
+const findProject = id => DATA.projects.find(project => project.id === id);
 
 const Project = () => {
 	let { id } = useParams();
-	let project = find(id); 
+	let project = findProject(id); 
+	if (!project) return <h1>Project not found!</h1>;
+
 	return (
-		project
-			? <h1>{project.name}</h1>
-			: <h1>Project not found!</h1>
+		<>
+			<h1>{project.name}</h1>
+			<DecisionList list={project.decisionList}	/>
+		</>
 	);
 }
 
@@ -96,8 +109,8 @@ const App = () => {
 					<Route path="/project/:id">
 						<Project />
 					</Route>
-					<Route path="/">
-						<Directory />
+					<Route exact path="/">
+						<Dashboard />
 					</Route>
 				</Switch>
 			</Router>

@@ -53,12 +53,11 @@ module.exports = (env) => {
       chunkFilename: '[name].bundle.js',
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: './',
+      publicPath: '/',
     },
     devServer: {
       contentBase: path.resolve(__dirname, 'dist'),
       hot: true,
-      publicPath: '/',
       historyApiFallback: true,
     },
     devtool: 'sourcemap',
@@ -68,7 +67,7 @@ module.exports = (env) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: "./src/index.html",
-        title: 'Property Management',
+        title: 'Remodeler',
       }),
     ],
   }
