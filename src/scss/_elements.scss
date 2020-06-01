@@ -1,0 +1,34 @@
+html, body {
+	background: $gray-100;
+}
+
+.main {
+	padding: $spacer * 2 $grid-gutter-width / 2;
+}
+
+.paper {
+	background: #fff;
+	border: $border-width solid $border-color;
+	border-radius: $border-radius;
+	margin: 0 (-$grid-gutter-width / 2);
+}
+
+.paper__row {
+	border-bottom: $border-width solid $border-color;
+	padding: $spacer / 2 $spacer;
+
+	&--link {
+		@extend .paper__row;
+		color: $body-color; 
+		display: block;
+
+		&:hover {
+			background: $gray-200;
+			color: $body-color; 
+		}
+	}
+
+	&:last-child {
+		border-bottom: 0;
+	}
+}
