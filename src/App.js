@@ -9,7 +9,11 @@ import {
 	useParams,
 } from 'react-router-dom';
 import {
+	Col,
 	Container,
+	Nav,
+	Navbar,
+	Row,
 } from 'react-bootstrap';
 
 const DATA = {
@@ -73,7 +77,7 @@ const ProjectList = ({ list }) => (
 
 const Dashboard = () => (
 	<>
-		<h1>Projects</h1>		
+		<h3>Projects</h3>		
 		<ProjectList list={DATA.projects} />
 	</>
 );
@@ -91,30 +95,58 @@ const findProject = id => DATA.projects.find(project => project.id === id);
 const Project = () => {
 	let { id } = useParams();
 	let project = findProject(id); 
-	if (!project) return <h1>Project not found!</h1>;
+	if (!project) return <h3>Project not found!</h3>;
 
 	return (
 		<>
-			<h1>{project.name}</h1>
-			<DecisionList list={project.decisionList}	/>
+			<h3>{project.name}</h3>
+			<Paper>
+				<Link className="paper__row--link" to={'/project/' + project.id + '/decision-list'}>
+					<div>Decision List</div>
+				</Link>	
+				<Link className="paper__row--link" to={'/project/' + project.id + '/social-saves'}>
+					<div>Social Saves</div>
+				</Link>	
+				<Link className="paper__row--link" to={'/project/' + project.id + '/budgeting'}>
+					<div>Budgeting</div>
+				</Link>	
+			</Paper>
 		</>
 	);
 }
 
+const MainNav = ({ className }) => (
+	<Nav className={className}>
+		<Nav.Link href="#test">Nav placeholder</Nav.Link>
+	</Nav>
+);
+
+const Test = () => <div>test</div>;
+
 const App = () => {
 	return (
-		<Container className="main">
-			<Router>
-				<Switch>
-					<Route path="/project/:id">
-						<Project />
-					</Route>
-					<Route exact path="/">
-						<Dashboard />
-					</Route>
-				</Switch>
-			</Router>
-		</Container>
+		<Router>
+			<Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+				<Link className="navbar-brand" to="/">Remodeler</Link>
+				<Navbar.Toggle aria-controls="nav toggle" />
+				<Navbar.Collapse>
+					<MainNav className="d-md-none" />
+				</Navbar.Collapse>
+			</Navbar>	
+			<Container fluid className="main">
+				<Row>
+					<Col className="sidenav d-none d-md-block">
+						<MainNav />
+					</Col>
+					<Col>
+						<Switch>
+							<Route path="/project/:id" component={Project} />
+							<Route exact path="/" component={Dashboard} />
+						</Switch>
+					</Col>
+				</Row>
+			</Container>
+		</Router>
 	)
 }
 
