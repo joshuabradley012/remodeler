@@ -31,6 +31,7 @@ module.exports = (env) => {
 			],
 		},
     resolve: { extensions: ['*', '.js', '.jsx'] },
+		devtool: 'sourcemap',
 		output: {
 			chunkFilename: '[name].bundle.js',
 			filename: '[name].bundle.js',

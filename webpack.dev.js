@@ -23,7 +23,6 @@ module.exports = merge.smart(common({ ENVIRONMENT: 'development' }), {
 		hot: true,
 		historyApiFallback: true,
 	},
-	devtool: 'sourcemap',
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 	],
