@@ -7,6 +7,7 @@ import {
 	Route,
 	Link,
 	useParams,
+	useRouteMatch,
 } from 'react-router-dom';
 import {
 	Col,
@@ -61,18 +62,20 @@ const DATA = {
 	],
 };
 
-const Paper = ({ className, ...props }) => (
-	<div className={classNames(className, 'paper')} {...props} />
+const Test = () => <div>test</div>;
+
+const Panel = ({ className, ...props }) => (
+	<div className={classNames(className, 'panel')} {...props} />
 );
 
 const ProjectList = ({ list }) => (
-	<Paper>
+	<Panel>
 		{list.map((item, i) => (
-			<Link className="paper__row--link" to={'/project/' + item.id} key={i}>
+			<Link className="panel__row--link" to={'/projects/' + item.id} key={i}>
 				<div>{item.name}</div>
 			</Link>
 		))}
-	</Paper>
+	</Panel>
 );
 
 const Dashboard = () => (
@@ -83,45 +86,50 @@ const Dashboard = () => (
 );
 
 const DecisionList = ({ list }) => (
-	<Paper>
+	<Panel>
 		{list.map((item, i) => (
-			<div className="paper__row" key={i}>{item.name}</div>	
+			<div className="panel__row" key={i}>{item.name}</div>	
 		))}
-	</Paper>
+	</Panel>
 );
 
 const findProject = id => DATA.projects.find(project => project.id === id);
 
 const Project = () => {
-	let { id } = useParams();
+	let { id, action } = useParams();
+	let match = useRouteMatch();
 	let project = findProject(id); 
 	if (!project) return <h3>Project not found!</h3>;
 
 	return (
 		<>
 			<h3>{project.name}</h3>
-			<Paper>
-				<Link className="paper__row--link" to={'/project/' + project.id + '/decision-list'}>
-					<div>Decision List</div>
-				</Link>	
-				<Link className="paper__row--link" to={'/project/' + project.id + '/social-saves'}>
-					<div>Social Saves</div>
-				</Link>	
-				<Link className="paper__row--link" to={'/project/' + project.id + '/budgeting'}>
-					<div>Budgeting</div>
-				</Link>	
-			</Paper>
+			{ action ?
+				<Test />
+				:
+				<Panel>
+					<Link className="panel__row--link" to={`${match.url}/decision-list`}>
+						<div>Decision List</div>
+					</Link>	
+					<Link className="panel__row--link" to={`${match.url}/social-saves`}>
+						<div>Social Saves</div>
+					</Link>	
+					<Link className="panel__row--link" to={`${match.url}/budgeting`}>
+						<div>Budgeting</div>
+					</Link>	
+				</Panel>
+			}
 		</>
 	);
 }
 
 const MainNav = ({ className }) => (
 	<Nav className={className}>
-		<Nav.Link href="#test">Nav placeholder</Nav.Link>
+		<Nav.Link href="#test">Nav placeholder 1</Nav.Link>
+		<Nav.Link href="#test">Nav placeholder 2</Nav.Link>
+		<Nav.Link href="#test">Nav placeholder 3</Nav.Link>
 	</Nav>
 );
-
-const Test = () => <div>test</div>;
 
 const App = () => {
 	return (
@@ -140,7 +148,7 @@ const App = () => {
 					</Col>
 					<Col>
 						<Switch>
-							<Route path="/project/:id" component={Project} />
+							<Route path="/projects/:id/:action?" component={Project} />
 							<Route exact path="/" component={Dashboard} />
 						</Switch>
 					</Col>
