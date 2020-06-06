@@ -8,11 +8,12 @@ html, body {
 }
 
 .sidenav {
-	flex: 0 0 12rem;
+	flex: 0 0 8rem;
 
 	.nav {
 		.nav-link {
 			color: $body-color;
+			flex: 0 0 100%;
 			margin-bottom: $spacer * .5;
 			padding: 0;
 		}
@@ -24,8 +25,10 @@ html, body {
 	border: $border-width solid $border-color;
 	border-radius: $border-radius;
 
-	@media (max-width: map-get($grid-breakpoints, "md") - 1) {
+	@media (max-width: map-get($grid-breakpoints, "sm") - 1) {
 		border-radius: 0;
+		border-left: 0;
+		border-right: 0;
 		margin-left: -$grid-gutter-width * .5;
 		margin-right: -$grid-gutter-width * .5;
 	}
