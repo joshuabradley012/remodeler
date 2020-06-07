@@ -3,77 +3,153 @@ import React, { createContext, useReducer, useContext } from 'react';
 const GlobalState = createContext();
 
 const initialState = {
+	navLinks: [
+		{ name: 'Projects', path: '/projects' },
+		{ name: 'Jobs', path: '/jobs' },
+		{ name: 'Status', path: '/status' },
+	],
+	subNavLinks: [
+		{ name: 'Projects', path: '/projects' },
+		{ name: 'Jobs', path: '/jobs' },
+		{ name: 'Status', path: '/status' },
+	],
 	projects: [
 		{
 			id: 'bathroom',
 			name: 'Bathroom',
-			decisionList: [
+			actions: [
 				{
-					id: 'sink',
-					name: 'Sink',
-					selectedStyle: '1',
-					styles: [
+					id: 'decision-list',
+					name: 'Decision List',
+					items: [
 						{
-							id: '1',
-							name: 'Porcelain',
+							id: 'sink',
+							name: 'Sink',
+							selectedStyle: '1',
+							styles: [
+								{
+									id: '1',
+									name: 'Porcelain',
+								},
+								{
+									id: '2',
+									name: 'Blue glass',
+								},
+							],
 						},
 						{
-							id: '2',
-							name: 'Blue glass',
+							id: 'tile',
+							name: 'Tile',
+							selectedStyle: '2',
+							styles: [
+								{
+									id: '1',
+									name: 'Small white squares',
+								},
+								{
+									id: '2',
+									name: 'Large black squares',
+								},
+							],
 						},
+
 					],
 				},
 				{
-					id: 'tile',
-					name: 'Tile',
-					selectedStyle: '2',
-					styles: [
-						{
-							id: '1',
-							name: 'Small white squares',
-						},
-						{
-							id: '2',
-							name: 'Large black squares',
-						},
-					],
+					id: 'social-saves',
+					name: 'Social Saves',
+					items: [],
+				},
+				{
+					id: 'budget',
+					name: 'Budget',
+					items: [],
 				},
 			],
-			ideaList: [],
-			budget: {
-				max: 10000,
-			},
 		},
 		{
 			id: 'kitchen',
 			name: 'Kitchen',
-			decisionList: [],
-			ideaList: [],
-			budget: {},
+			actions: [
+				{
+					id: 'decision-list',
+					name: 'Decision List',
+					items: [],
+				},
+				{
+					id: 'social-saves',
+					name: 'Social Saves',
+					items: [],
+				},
+				{
+					id: 'budget',
+					name: 'Budget',
+					items: [],
+				},
+			],
 		},
 		{
 			id: 'patio',
 			name: 'Patio',
-			decisionList: [],
-			ideaList: [],
-			budget: {},
-
+			actions: [
+				{
+					id: 'decision-list',
+					name: 'Decision List',
+					items: [],
+				},
+				{
+					id: 'social-saves',
+					name: 'Social Saves',
+					items: [],
+				},
+				{
+					id: 'budget',
+					name: 'Budget',
+					items: [],
+				},
+			],
 		},
 		{
 			id: 'bedroom',
 			name: 'Bedroom',
-			decisionList: [],
-			ideaList: [],
-			budget: {},
-
+			actions: [
+				{
+					id: 'decision-list',
+					name: 'Decision List',
+					items: [],
+				},
+				{
+					id: 'social-saves',
+					name: 'Social Saves',
+					items: [],
+				},
+				{
+					id: 'budget',
+					name: 'Budget',
+					items: [],
+				},
+			],
 		},
 		{
 			id: 'windows',
 			name: 'Windows',
-			decisionList: [],
-			ideaList: [],
-			budget: {},
-
+			actions: [
+				{
+					id: 'decision-list',
+					name: 'Decision List',
+					items: [],
+				},
+				{
+					id: 'social-saves',
+					name: 'Social Saves',
+					items: [],
+				},
+				{
+					id: 'budget',
+					name: 'Budget',
+					items: [],
+				},
+			],
 		},
 	],
 };
@@ -96,9 +172,11 @@ export const StateProvider = ({ children }) => {
 
 const useGlobalState = () => {
 	const [state, dispatch] = useContext(GlobalState);
+
 	return {
-		...state
+		...state,
 	}
 }
 
 export default useGlobalState;
+

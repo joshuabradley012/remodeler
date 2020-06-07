@@ -1,34 +1,27 @@
 import React from 'react';
-import {
-	useParams,
-	useRouteMatch,
-} from 'react-router-dom';
-import LinkPanel from './LinkPanel';
-import ProjectAction from './ProjectAction';
+import { useParams } from 'react-router-dom';
+import ProjectActions from './ProjectActions';
 import useGlobalState from '../contexts/GlobalState';
+
+const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
+
+const dashToCamel = (dashedWord) => (
+	dashedWord.split('-').map(
+		(word, i) => i === 0 ? word : capitalize(word)
+	).join('')
+);
 
 const findProject = id => useGlobalState().projects.find(project => project.id === id);
 
 const Project = () => {
-	let { id, action } = useParams();
-	let match = useRouteMatch();
+	let { id } = useParams();
 	let project = findProject(id); 
 	if (!project) return <h3>Project not found!</h3>;
-
-	let actionLinks = [
-		{ name: 'Decision List', path: `${match.url}/decision-list` },
-		{ name: 'Social Saves', path: `${match.url}/social-saves` },
-		{ name: 'Budget', path: `${match.url}/budget` },
-	];
 
 	return (
 		<>
 			<h3>{project.name}</h3>
-			{action ?
-				<ProjectAction project={project} action={action} />
-				:
-				<LinkPanel links={actionLinks} />
-			}
+			<ProjectActions tabs={project.actions} />
 		</>
 	);
 }
