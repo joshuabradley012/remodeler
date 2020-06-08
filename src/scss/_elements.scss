@@ -12,10 +12,36 @@ html, body {
 
 	.nav {
 		.nav-link {
+			border-top-right-radius: $spacer;
+			border-bottom-right-radius: $spacer;
 			color: $body-color;
-			flex: 0 0 100%;
-			margin-bottom: $spacer * .5;
-			padding: 0;
+			margin: 0 (-$spacer);
+			padding: $spacer * .25 $spacer;
+
+			&.active {
+				background: $gray-200;
+			}
+		}
+	}
+}
+
+.nav-tabs {
+	border-bottom-width: 2px;
+
+	.nav-item {
+		margin-bottom: -2px;
+	}
+
+	.nav-link {
+		border: 0;
+		color: $gray-600;
+		padding: $spacer * .5 0;
+		margin-right: $spacer * 2;
+
+		&.active {
+			background-color: transparent;
+			border-bottom: 2px solid $black;
+			color: $black;
 		}
 	}
 }

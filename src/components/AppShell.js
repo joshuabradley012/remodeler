@@ -22,13 +22,13 @@ const AppShell = () => {
 			<Container fluid className="main">
 				<Row>
 					<Col className="sidenav d-none d-md-block">
-						<SideNav />
+						<SideNav className="d-block" />
 					</Col>
 					<Col>
 						<Container>
 							<Row className="d-block">
 								<Switch>
-									<Route path="/projects/:id/:action" component={Project} />
+									<Route path="/projects/:id/:action/:item?" component={Project} />
 									<Redirect from="/projects/:id" to="/projects/:id/decision-list" />
 									<Route path="/projects" component={Dashboard} />
 									<Route exact path="/" component={Dashboard} />

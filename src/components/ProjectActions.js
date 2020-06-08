@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import LinkPanel from './LinkPanel';
 import {
+	useHistory,
 	useParams,
 	useRouteMatch,
 } from 'react-router-dom';
+import { generatePath } from 'react-router';
 import {
 	Tabs,
 	Tab,
@@ -17,26 +19,35 @@ const dashToCamel = (dashedWord) => (
 	).join('')
 );
 
-const findAction = (id, project) => project.actions.find(action => action.id === id);
-
 const ProjectActions = ({ tabs }) => {
-	const defaultAction = tabs[0].id;
-	const [key, setKey] = useState(defaultAction);
+	const { id, action } = useParams();
+	const history = useHistory();
+	const match = useRouteMatch();
+	console.log(match);
+	const [key, setKey] = useState(action);
+
+	const selectTab = event => {
+		setKey(event);
+		let path = generatePath(match.path, { id: id, action: event });
+		history.push(path);
+	}
 	
 	return (
 		<Tabs
 			id="action-tabs"
 			activeKey={key}
-			onSelect={(k) => setKey(k)}
+			onSelect={selectTab}
 		>
 			{tabs.map((tab, i) => {
-				let match = useRouteMatch();
-				const actionLinks = tab.items.map(item => ({
-					name: item.name,
-					path: `${match.url}/${item.id}`
-				}));
+				let actionLinks = tab.items.map(item => {
+					let path = generatePath(match.path, { id: id, action: action, item: item.id });
+					return {
+						name: item.name,
+						path: path,
+					}
+				});
 				return (
-					<Tab eventKey={tab.id} title={tab.name} key={i}>
+					<Tab className="mt-1" eventKey={tab.id} title={tab.name} key={i}>
 						<LinkPanel links={actionLinks} />
 					</Tab>
 				);
