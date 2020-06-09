@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectActions from './ProjectActions';
 import useGlobalState from '../contexts/GlobalState';
+import Breadcrumbs from './Breadcrumbs';
 
 const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
 
@@ -20,6 +21,8 @@ const Project = () => {
 
 	return (
 		<>
+		   {/* Here is where I'll add breadcrumb component*/}
+		    <Breadcrumbs/>
 			<h3>{project.name}</h3>
 			<ProjectActions tabs={project.actions} />
 		</>

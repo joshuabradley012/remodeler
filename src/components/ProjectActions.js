@@ -23,7 +23,6 @@ const ProjectActions = ({ tabs }) => {
 	const { id, action } = useParams();
 	const history = useHistory();
 	const match = useRouteMatch();
-	console.log(match);
 	const [key, setKey] = useState(action);
 
 	const selectTab = event => {
