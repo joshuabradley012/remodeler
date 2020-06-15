@@ -4,7 +4,7 @@ import { Nav } from 'react-bootstrap';
 import useGlobalState from '../contexts/GlobalState';
 
 const MainNav = ({ className }) => {
-	let navLinks = useGlobalState().navLinks;
+	let navLinks = useGlobalState().result.navLinks;
 	return (
 		<Nav className={className}>
 			{navLinks.map((item, i) => (

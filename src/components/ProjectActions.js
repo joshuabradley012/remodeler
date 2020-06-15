@@ -1,53 +1,49 @@
 import React, { useState } from 'react';
-import LinkPanel from './LinkPanel';
+import { generatePath } from 'react-router';
 import {
 	useHistory,
 	useParams,
 	useRouteMatch,
 } from 'react-router-dom';
-import { generatePath } from 'react-router';
 import {
 	Tabs,
 	Tab,
 } from 'react-bootstrap';
+import LinkPanel from './LinkPanel';
+import useGlobalState from '../contexts/GlobalState';
 
-const capitalize = (word) => word[0].toUpperCase() + word.slice(1);
+const ProjectActions = ({ actions }) => {
+	const globalState = useGlobalState();
 
-const dashToCamel = (dashedWord) => (
-	dashedWord.split('-').map(
-		(word, i) => i === 0 ? word : capitalize(word)
-	).join('')
-);
-
-const ProjectActions = ({ tabs }) => {
 	const { id, action } = useParams();
 	const history = useHistory();
 	const match = useRouteMatch();
-	console.log(match);
 	const [key, setKey] = useState(action);
 
-	const selectTab = event => {
-		setKey(event);
-		let path = generatePath(match.path, { id: id, action: event });
+	const selectTab = e => {
+		setKey(e);
+		let path = generatePath(match.path, { id: id, action: e });
 		history.push(path);
 	}
-	
+
 	return (
 		<Tabs
 			id="action-tabs"
 			activeKey={key}
 			onSelect={selectTab}
 		>
-			{tabs.map((tab, i) => {
-				let actionLinks = tab.items.map(item => {
-					let path = generatePath(match.path, { id: id, action: action, item: item.id });
+			{actions.map((actionKey, i) => {
+				const action = globalState.entities.actions[actionKey];
+				let actionLinks = action.items.map(itemKey => {
+					const item = globalState.entities.items[itemKey];
+					let path = generatePath(match.path, { id: id, action: action.id, item: item.id });
 					return {
 						name: item.name,
 						path: path,
 					}
 				});
 				return (
-					<Tab className="mt-1" eventKey={tab.id} title={tab.name} key={i}>
+					<Tab className="mt-1" eventKey={action.id} title={action.name} key={i}>
 						<LinkPanel links={actionLinks} />
 					</Tab>
 				);
