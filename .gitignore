@@ -17,6 +17,7 @@ nbproject
 *.sublime-project
 *.sublime-workspace
 sftp-config.json
+tags
 
 # ignore log files and databases
 *.log

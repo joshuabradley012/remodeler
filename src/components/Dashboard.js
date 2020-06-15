@@ -4,13 +4,15 @@ import useGlobalState from '../contexts/GlobalState';
 
 const Dashboard = () => {
 	let data = useGlobalState();
-	let projectLinks = data.projects.map(project => ({
-		name: project.name,
-		path: `/projects/${project.id}`,
+	let projectLinks = Object.entries(data.entities.projects)
+		.map(([key, project]) => ({
+			name: project.name,
+			path: `/projects/${project.id}`,
 	}));
+
 	return (
 		<>
-			<h3>Projects</h3>		
+			<h3>Projects</h3>
 			<LinkPanel links={projectLinks} />
 		</>
 	);
