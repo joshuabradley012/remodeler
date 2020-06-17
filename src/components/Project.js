@@ -19,7 +19,7 @@ const Project = () => {
 
 	let subNavLinks = Object.entries(globalState.entities.projects)
 		.map(([key, value]) => {
-			let path = generatePath(match.path, { id: value.id, action: 'decision-list' });
+			let path = generatePath(match.path, { id: value.id });
 			return { path: path, name: value.name };
 	});
 	// subNavLinks.unshift({ path: '/projects', name: 'All Projects' });
