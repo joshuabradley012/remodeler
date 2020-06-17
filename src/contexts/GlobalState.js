@@ -1,79 +1,16 @@
 import React, { createContext, useReducer, useContext } from 'react';
-import { merge } from 'lodash';
 import { normalize } from 'normalizr';
 import initialState from './initialState';
-import projectSchema from './schema'
+import projectSchema from './schema';
+import rootReducer from './reducers';
+import actionTypes from './actionTypes';
 
 const normalizedState = normalize(initialState, projectSchema);
 
-const actionTypes = {
-	ADD_PROJECT_ACTION_ITEM: 'ADD_PROJECT_ACTION_ITEM',
-}
-
 const GlobalState = createContext();
 
-const addProjectActionItemId = (state, action) => {
-	const { payload } = action;
-	const { projectId, actionId, id } = payload;
-
-	const projectActionId = `${projectId}-${actionId}`;
-	const actionItems = [...state[projectActionId].items];
-
-	const actionItemId = `${actionId}-${id}`;
-	actionItems.push(actionItemId);
-
-	return merge({}, state, { [projectActionId]: { items: actionItems } });
-}
-
-const addProjectActionItem = (state, action) => {
-	const { payload } = action;
-	const { actionId, id, name } = payload;
-
-	const item = {
-		id: id,
-		name: name,
-		selectedStyle: null,
-		styles: [],
-	};
-
-	const actionItemId = `${actionId}-${id}`;
-	return merge({}, state, { [actionItemId]: item });
-}
-
-const projectActionReducer = (state, action) => {
-	switch (action.type) {
-		case actionTypes.ADD_PROJECT_ACTION_ITEM:
-			return addProjectActionItemId(state, action);
-		default:
-			return state;
-	}
-}
-
-const projectActionItemReducer = (state, action) => {
-	switch (action.type) {
-		case actionTypes.ADD_PROJECT_ACTION_ITEM:
-			return addProjectActionItem(state, action);
-		default:
-			return state;
-	}
-}
-
-const stateReducer = (state, action) => {
-	const { entities } = state;
-	const { actions, items } = entities;
-
-	return {
-		...state,
-		entities: {
-			...entities,
-			actions: projectActionReducer(actions, action),
-			items: projectActionItemReducer(items, action),
-		}
-	}
-}
-
 export const StateProvider = ({ children }) => {
-	const [state, dispatch] = useReducer(stateReducer, normalizedState);
+	const [state, dispatch] = useReducer(rootReducer, normalizedState);
 	return (
 		<GlobalState.Provider value={[state, dispatch]}>
 			{children}
@@ -88,9 +25,14 @@ const useGlobalState = () => {
 		dispatch({ type: actionTypes.ADD_PROJECT_ACTION_ITEM, payload: actionItem })
 	);
 
+	const updateSubNav = subNavLinks => (
+		dispatch({ type: actionTypes.UPDATE_SUB_NAV, payload: subNavLinks })
+	);
+
 	return {
-		addProjectActionItem,
 		...state,
+		addProjectActionItem,
+		updateSubNav,
 	}
 }
 

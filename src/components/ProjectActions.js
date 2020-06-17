@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { generatePath } from 'react-router';
 import {
 	useHistory,
@@ -14,10 +14,9 @@ import useGlobalState from '../contexts/GlobalState';
 
 const ProjectActions = ({ actions }) => {
 	const globalState = useGlobalState();
-
-	const { id, action } = useParams();
 	const history = useHistory();
 	const match = useRouteMatch();
+	const { id, action } = useParams();
 	const [key, setKey] = useState(action);
 
 	const selectTab = e => {

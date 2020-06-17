@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LinkPanel from './LinkPanel';
 import useGlobalState from '../contexts/GlobalState';
+import initialState from '../contexts/initialState';
 
 const Dashboard = () => {
-	let data = useGlobalState();
-	let projectLinks = Object.entries(data.entities.projects)
+	const globalState = useGlobalState();
+
+	let projectLinks = Object.entries(globalState.entities.projects)
 		.map(([key, project]) => ({
 			name: project.name,
 			path: `/projects/${project.id}`,
 	}));
+
+	useEffect(() => {
+		globalState.updateSubNav(initialState.subNavLinks);
+	}, []);
 
 	return (
 		<>
