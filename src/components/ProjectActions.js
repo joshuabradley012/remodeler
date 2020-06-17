@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { generatePath } from 'react-router';
 import {
 	useHistory,
@@ -21,8 +21,8 @@ const ProjectActions = ({ actions }) => {
 	const [key, setKey] = useState(action);
 
 	const selectTab = e => {
-		setKey(e);
 		let path = generatePath(match.path, { id: id, action: e });
+		setKey(e);
 		history.push(path);
 	}
 
