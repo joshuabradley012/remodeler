@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { generatePath } from 'react-router';
 import {
-	useHistory,
 	useParams,
 	useRouteMatch,
 } from 'react-router-dom';
@@ -10,7 +9,6 @@ import useGlobalState from '../contexts/GlobalState';
 
 const Project = () => {
 	const globalState = useGlobalState();
-	const history = useHistory();
 	const match = useRouteMatch();
 	const { id } = useParams();
 

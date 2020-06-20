@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import actionTypes from './actionTypes';
 
 const addProjectActionItemId = (state, action) => {
@@ -62,15 +62,15 @@ const subNavReducer = (state, action) => {
 
 const rootReducer = (state, action) => {
 	const { entities, result } = state;
-	const { actions, items } = entities;
+	const { projectActions, projectItems } = entities;
 	const { subNavLinks } = result;
 
 	return {
 		...state,
 		entities: {
 			...entities,
-			actions: projectActionReducer(actions, action),
-			items: projectActionItemReducer(items, action),
+			projectActions: projectActionReducer(projectActions, action),
+			projectItems: projectActionItemReducer(projectItems, action),
 		},
 		result: {
 			...result,

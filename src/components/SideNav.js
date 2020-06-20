@@ -4,10 +4,10 @@ import { Nav } from 'react-bootstrap';
 import useGlobalState from '../contexts/GlobalState';
 
 const SideNav = ({ className }) => {
-	let navLinks = useGlobalState().result.subNavLinks;
+	let subNavLinks = useGlobalState().result.subNavLinks;
 	return (
 		<Nav className={className}>
-			{navLinks.map((item, i) => (
+			{subNavLinks.map((item, i) => (
 				<NavLink className="nav-link" to={item.path} key={i}>
 					{item.name}
 				</NavLink>
