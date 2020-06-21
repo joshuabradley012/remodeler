@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import ProjectActions from './ProjectActions';
 import useGlobalState from '../contexts/GlobalState';
+import Breadcrumbs from './Breadcrumbs';
 
 const Project = () => {
 	const globalState = useGlobalState();
@@ -28,6 +29,7 @@ const Project = () => {
 
 	return (
 		<>
+			<Breadcrumbs />
 			<h3>{project.name}</h3>
 			<ProjectActions actions={project.actions} />
 		</>

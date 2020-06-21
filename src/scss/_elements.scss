@@ -48,7 +48,7 @@ html, body {
 }
 
 .panel {
-	background: #fff;
+	background: $white;
 	border: $border-width solid $border-color;
 	border-radius: $border-radius;
 
@@ -67,12 +67,12 @@ html, body {
 
 	&--link {
 		@extend .panel__row;
-		color: $body-color; 
+		color: $body-color;
 		display: block;
 
 		&:hover {
 			background: $gray-200;
-			color: $body-color; 
+			color: $body-color;
 		}
 	}
 
@@ -81,3 +81,21 @@ html, body {
 	}
 }
 
+.breadcrumb {
+	padding: 0;
+	background-color: transparent;
+
+	.breadcrumb-item {
+		&.active {
+			color: #333;
+		}
+
+		& + .breadcrumb-item:before {
+			content: '>';
+		}
+
+		a {
+			color: $gray-600;
+		}
+	}
+}

@@ -28,8 +28,8 @@ const AppShell = () => {
 						<Container>
 							<Row className="d-block">
 								<Switch>
+									<Redirect exact from="/projects/:id" to="/projects/:id/decision-list" />
 									<Route path="/projects/:id/:action?/:item?" component={Project} />
-									{/* <Redirect from="/projects/:id" to="/projects/:id/decision-list" /> */}
 									<Route path="/projects" component={Dashboard} />
 									<Route exact path="/" component={Dashboard} />
 								</Switch>
