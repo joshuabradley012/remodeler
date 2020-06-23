@@ -20,7 +20,8 @@ const Breadcrumbs = () => {
 
 		uniqueUrl.push(`/${pathParts[i]}`);
 		let finalPath = uniqueUrl.join('');
-		let name = pathParts[i].replace(/-/g, ' ').replace(/\w\S*/g, capitalize);
+		let name = pathParts[i].replace(/-/g, ' ').toLowerCase();
+		name = capitalize(name);
 
 		let isLast = pathParts.indexOf(pathParts[i]) === pathParts.length - 1
 		breadcrumbs.push(

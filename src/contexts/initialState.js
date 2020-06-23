@@ -1,125 +1,78 @@
 export default {
 	navLinks: [
-		{ name: 'Projects', path: '/projects' },
-		{ name: 'Jobs', path: '/jobs' },
-		{ name: 'Status', path: '/status' },
+		{
+			name: 'Projects',
+			path: '/projects',
+		},
+		{
+			name: 'Jobs',
+			path: '/jobs',
+		},
+		{
+			name: 'Status',
+			path: '/status',
+		},
 	],
 	subNavLinks: [
-		{ name: 'Projects', path: '/projects' },
-		{ name: 'Jobs', path: '/jobs' },
-		{ name: 'Status', path: '/status' },
+		{
+			name: 'Projects',
+			path: '/projects',
+		},
+		{
+			name: 'Jobs',
+			path: '/jobs',
+		},
+		{
+			name: 'Status',
+			path: '/status',
+		},
+	],
+	projectActions: [
+		{
+			id: 'decision-list',
+			name: 'Decision list',
+		},
+		{
+			id: 'social-saves',
+			name: 'Social saves',
+		},
+		{
+			id: 'budget',
+			name: 'Budget',
+		},
 	],
 	projects: [
 		{
 			id: 'bathroom',
 			name: 'Bathroom',
-			actions: [
+			items: [
 				{
-					id: 'decision-list',
-					name: 'Decision List',
-					items: [
+					id: 'sink',
+					name: 'Sink',
+					selectedStyle: '1',
+					styles: [
 						{
-							id: 'sink',
-							name: 'Sink',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Porcelain',
-								},
-								{
-									id: '2',
-									name: 'Blue glass',
-								},
-							],
+							id: '1',
+							name: 'Porcelain',
 						},
 						{
-							id: 'tile',
-							name: 'Tile',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Small white squares',
-								},
-								{
-									id: '2',
-									name: 'Large black squares',
-								},
-							],
-						},
-
-					],
-				},
-				{
-					id: 'social-saves',
-					name: 'Social Saves',
-					items: [
-						{
-							id: 'sink',
-							name: 'Sink',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Porcelain',
-								},
-								{
-									id: '2',
-									name: 'Blue glass',
-								},
-							],
-						},
-						{
-							id: 'tile',
-							name: 'Tile',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Small white squares',
-								},
-								{
-									id: '2',
-									name: 'Large black squares',
-								},
-							],
+							id: '2',
+							name: 'Blue glass',
 						},
 					],
 				},
 				{
-					id: 'budget',
-					name: 'Budget',
-					items: [
+					id: 'tile',
+					name: 'Tile',
+					selectedStyle: '2',
+					styles: [
 						{
-							id: 'sink',
-							name: 'Sink',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Porcelain',
-								},
-								{
-									id: '2',
-									name: 'Blue glass',
-								},
-							],
+							id: '1',
+							name: 'Small white squares',
 						},
 						{
-							id: 'tile',
-							name: 'Tile',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Small white squares',
-								},
-								{
-									id: '2',
-									name: 'Large black squares',
-								},
-							],
+							id: '2',
+							name: 'Large black squares',
 						},
 					],
 				},
@@ -128,112 +81,34 @@ export default {
 		{
 			id: 'kitchen',
 			name: 'Kitchen',
-			actions: [
+			items: [
 				{
-					id: 'decision-list',
-					name: 'Decision List',
-					items: [
+					id: 'counter-top',
+					name: 'Counter Top',
+					selectedStyle: '1',
+					styles: [
 						{
-							id: 'counter-top',
-							name: 'Counter Top',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Granite',
-								},
-								{
-									id: '2',
-									name: 'Laminate',
-								},
-							],
+							id: '1',
+							name: 'Granite',
 						},
 						{
-							id: 'cupboard',
-							name: 'Cupboard',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'White old fashioned',
-								},
-								{
-									id: '2',
-									name: 'Black modern',
-								},
-							],
+							id: '2',
+							name: 'Laminate',
 						},
 					],
 				},
 				{
-					id: 'social-saves',
-					name: 'Social Saves',
-					items: [
+					id: 'cupboard',
+					name: 'Cupboard',
+					selectedStyle: '2',
+					styles: [
 						{
-							id: 'counter-top',
-							name: 'Counter Top',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Granite',
-								},
-								{
-									id: '2',
-									name: 'Laminate',
-								},
-							],
+							id: '1',
+							name: 'White old fashioned',
 						},
 						{
-							id: 'cupboard',
-							name: 'Cupboard',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'White old fashioned',
-								},
-								{
-									id: '2',
-									name: 'Black modern',
-								},
-							],
-						},
-					],
-				},
-				{
-					id: 'budget',
-					name: 'Budget',
-					items: [
-						{
-							id: 'counter-top',
-							name: 'Counter Top',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Granite',
-								},
-								{
-									id: '2',
-									name: 'Laminate',
-								},
-							],
-						},
-						{
-							id: 'cupboard',
-							name: 'Cupboard',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'White old fashioned',
-								},
-								{
-									id: '2',
-									name: 'Black modern',
-								},
-							],
+							id: '2',
+							name: 'Black modern',
 						},
 					],
 				},
@@ -242,228 +117,70 @@ export default {
 		{
 			id: 'patio',
 			name: 'Patio',
-			actions: [
+			items: [
 				{
-					id: 'decision-list',
-					name: 'Decision List',
-					items: [
+					id: 'railing',
+					name: 'Railing',
+					selectedStyle: '1',
+					styles: [
 						{
-							id: 'railing',
-							name: 'Railing',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Cedar with black rods',
-								},
-								{
-									id: '2',
-									name: 'Oak',
-								},
-							],
+							id: '1',
+							name: 'Cedar with black rods',
 						},
 						{
-							id: 'floor-boards',
-							name: 'Floor Boards',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Dark redwood',
-								},
-								{
-									id: '2',
-									name: 'Light redwood',
-								},
-							],
+							id: '2',
+							name: 'Oak',
 						},
 					],
 				},
 				{
-					id: 'social-saves',
-					name: 'Social Saves',
-					items: [
+					id: 'floor-boards',
+					name: 'Floor Boards',
+					selectedStyle: '2',
+					styles: [
 						{
-							id: 'railing',
-							name: 'Railing',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Cedar with black rods',
-								},
-								{
-									id: '2',
-									name: 'Oak',
-								},
-							],
+							id: '1',
+							name: 'Dark redwood',
 						},
 						{
-							id: 'floor-boards',
-							name: 'Floor Boards',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Dark redwood',
-								},
-								{
-									id: '2',
-									name: 'Light redwood',
-								},
-							],
+							id: '2',
+							name: 'Light redwood',
 						},
 					],
-
-				},
-				{
-					id: 'budget',
-					name: 'Budget',
-					items: [
-						{
-							id: 'railing',
-							name: 'Railing',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Cedar with black rods',
-								},
-								{
-									id: '2',
-									name: 'Oak',
-								},
-							],
-						},
-						{
-							id: 'floor-boards',
-							name: 'Floor Boards',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Dark redwood',
-								},
-								{
-									id: '2',
-									name: 'Light redwood',
-								},
-							],
-						},
-					],
-
 				},
 			],
 		},
 		{
 			id: 'bedroom',
 			name: 'Bedroom',
-			actions: [
+			items: [
 				{
-					id: 'decision-list',
-					name: 'Decision List',
-					items: [
+					id: 'window',
+					name: 'Window',
+					selectedStyle: '1',
+					styles: [
 						{
-							id: 'window',
-							name: 'Window',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Large square',
-								},
-								{
-									id: '2',
-									name: 'Tall rectangle',
-								},
-							],
+							id: '1',
+							name: 'Large square',
 						},
 						{
-							id: 'ceiling-fan',
-							name: 'Ceiling Fan',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Large',
-								},
-								{
-									id: '2',
-									name: 'Small',
-								},
-							],
+							id: '2',
+							name: 'Tall rectangle',
 						},
 					],
 				},
 				{
-					id: 'social-saves',
-					name: 'Social Saves',
-					items: [
+					id: 'ceiling-fan',
+					name: 'Ceiling Fan',
+					selectedStyle: '2',
+					styles: [
 						{
-							id: 'window',
-							name: 'Window',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Large square',
-								},
-								{
-									id: '2',
-									name: 'Tall rectangle',
-								},
-							],
+							id: '1',
+							name: 'Large',
 						},
 						{
-							id: 'ceiling-fan',
-							name: 'Ceiling Fan',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Large',
-								},
-								{
-									id: '2',
-									name: 'Small',
-								},
-							],
-						},
-					],
-				},
-				{
-					id: 'budget',
-					name: 'Budget',
-					items: [
-						{
-							id: 'window',
-							name: 'Window',
-							selectedStyle: '1',
-							styles: [
-								{
-									id: '1',
-									name: 'Large square',
-								},
-								{
-									id: '2',
-									name: 'Tall rectangle',
-								},
-							],
-						},
-						{
-							id: 'ceiling-fan',
-							name: 'Ceiling Fan',
-							selectedStyle: '2',
-							styles: [
-								{
-									id: '1',
-									name: 'Large',
-								},
-								{
-									id: '2',
-									name: 'Small',
-								},
-							],
+							id: '2',
+							name: 'Small',
 						},
 					],
 				},

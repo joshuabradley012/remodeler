@@ -31,7 +31,7 @@ const Project = () => {
 		<>
 			<Breadcrumbs />
 			<h3>{project.name}</h3>
-			<ProjectActions actions={project.actions} />
+			<ProjectActions actions={globalState.result.projectActions} />
 		</>
 	);
 }

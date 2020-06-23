@@ -1,31 +1,29 @@
 import merge from 'lodash/merge';
 import actionTypes from './actionTypes';
 
-const addProjectActionItemId = (state, action) => {
+const addProjectItemId = (state, action) => {
 	const { payload } = action;
-	const { projectId, actionId, id } = payload;
+	const { projectId, id } = payload;
 
-	const projectActionId = `${projectId}-${actionId}`;
-	const actionItems = [...state[projectActionId].items];
+	const itemId = `${projectId}-${id}`;
+	const itemIds = [...state[projectId].items];
+	itemIds.push(itemId);
 
-	const actionItemId = `${actionId}-${id}`;
-	actionItems.push(actionItemId);
-
-	return merge({}, state, { [projectActionId]: { items: actionItems } });
+	return merge({}, state, { [projectId]: { items: itemIds } });
 }
 
-const projectActionReducer = (state, action) => {
+const projectReducer = (state, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_PROJECT_ACTION_ITEM:
-			return addProjectActionItemId(state, action);
+			return addProjectItemId(state, action);
 		default:
 			return state;
 	}
 }
 
-const addProjectActionItem = (state, action) => {
+const addProjectItem = (state, action) => {
 	const { payload } = action;
-	const { actionId, id, name } = payload;
+	const { projectId, id, name } = payload;
 
 	const item = {
 		id: id,
@@ -34,14 +32,14 @@ const addProjectActionItem = (state, action) => {
 		styles: [],
 	};
 
-	const actionItemId = `${actionId}-${id}`;
-	return merge({}, state, { [actionItemId]: item });
+	const itemId = `${projectId}-${id}`;
+	return merge({}, state, { [itemId]: item });
 }
 
-const projectActionItemReducer = (state, action) => {
+const projectItemReducer = (state, action) => {
 	switch (action.type) {
 		case actionTypes.ADD_PROJECT_ACTION_ITEM:
-			return addProjectActionItem(state, action);
+			return addProjectItem(state, action);
 		default:
 			return state;
 	}
@@ -62,15 +60,15 @@ const subNavReducer = (state, action) => {
 
 const rootReducer = (state, action) => {
 	const { entities, result } = state;
-	const { projectActions, projectItems } = entities;
+	const { projects, items } = entities;
 	const { subNavLinks } = result;
 
 	return {
 		...state,
 		entities: {
 			...entities,
-			projectActions: projectActionReducer(projectActions, action),
-			projectItems: projectActionItemReducer(projectItems, action),
+			projects: projectReducer(projects, action),
+			items: projectItemReducer(items, action),
 		},
 		result: {
 			...result,

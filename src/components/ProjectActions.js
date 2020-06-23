@@ -48,7 +48,7 @@ const ActionModal = props => {
 	return (
 		<Modal
 			{...props}
-			size="lg"
+			size="md"
 			aria-labelledby="modal-title"
 			centered
 		>
@@ -114,10 +114,10 @@ const ProjectActions = ({ actions }) => {
 				activeKey={tab}
 				onSelect={selectTab}
 			>
-				{actions.map((actionKey, i) => {
-					const action = globalState.entities.projectActions[actionKey];
-					let actionLinks = action.items.map(itemKey => {
-						const item = globalState.entities.projectItems[itemKey];
+				{actions.map((action, i) => {
+					const itemKeys = globalState.entities.projects[id].items;
+					let actionLinks = itemKeys.map(itemKey => {
+						const item = globalState.entities.items[itemKey];
 						let path = generatePath(match.path, { id: id, action: action.id, item: item.id });
 						return {
 							name: item.name,

@@ -2,13 +2,13 @@ import { schema } from 'normalizr';
 
 const parentChildId = (value, parent) => `${parent.id}-${value.id}`;
 
-const style = new schema.Entity('projectStyles', {},
+const style = new schema.Entity('styles', {},
 	{
 		idAttribute: parentChildId
 	}
 );
 
-const item = new schema.Entity('projectItems',
+const item = new schema.Entity('items',
 	{
 		styles: [style]
 	},
@@ -17,17 +17,8 @@ const item = new schema.Entity('projectItems',
 	}
 );
 
-const action = new schema.Entity('projectActions',
-	{
-		items: [item]
-	},
-	{
-		idAttribute: parentChildId
-	}
-);
-
 const project = new schema.Entity('projects', {
-	actions: [action]
+	items: [item]
 });
 
 const projectSchema = { projects: [project] };

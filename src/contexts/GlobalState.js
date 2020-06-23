@@ -6,6 +6,7 @@ import rootReducer from './reducers';
 import actionTypes from './actionTypes';
 
 const normalizedState = normalize(initialState, projectSchema);
+console.log(normalizedState);
 
 const GlobalState = createContext();
 
