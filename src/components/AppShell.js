@@ -129,12 +129,12 @@ const AppBar = () => (
 );
 
 const AppShell = () => {
-	return (
+  return (
     <div className="app-shell">
       <AppBar />
       <Dashboard />
     </div>
-	);
+  );
 };
 
 export default AppShell;

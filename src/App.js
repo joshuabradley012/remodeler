@@ -4,9 +4,9 @@ import { StateProvider } from './contexts/GlobalState';
 import AppShell from './components/AppShell';
 
 const App = () => (
-	<StateProvider>
-		<AppShell />
-	</StateProvider>
+  <StateProvider>
+    <AppShell />
+  </StateProvider>
 );
 
 export default App;

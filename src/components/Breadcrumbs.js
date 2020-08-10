@@ -7,33 +7,33 @@ const capitalize = text => text.charAt(0).toUpperCase() + text.substr(1).toLower
 const BreadcrumbLink = ({ href, ...props }) => <Link to={href} {...props} />;
 
 const Breadcrumbs = () => {
-	const match = useRouteMatch();
-	const path = match.url;
+  const match = useRouteMatch();
+  const path = match.url;
 
-	let pathParts = path.split('/');
-	pathParts.shift();
+  let pathParts = path.split('/');
+  pathParts.shift();
 
-	let breadcrumbs = [];
-	let uniqueUrl = []
+  let breadcrumbs = [];
+  let uniqueUrl = []
 
-	for (let i = 0; i < pathParts.length; i ++) {
+  for (let i = 0; i < pathParts.length; i ++) {
 
-		uniqueUrl.push(`/${pathParts[i]}`);
-		let finalPath = uniqueUrl.join('');
-		let name = pathParts[i].replace(/-/g, ' ').toLowerCase();
-		name = capitalize(name);
+    uniqueUrl.push(`/${pathParts[i]}`);
+    let finalPath = uniqueUrl.join('');
+    let name = pathParts[i].replace(/-/g, ' ').toLowerCase();
+    name = capitalize(name);
 
-		let isLast = pathParts.indexOf(pathParts[i]) === pathParts.length - 1
-		breadcrumbs.push(
-			<Breadcrumb.Item key={i} active={isLast} href={finalPath} linkAs={BreadcrumbLink}>{name}</Breadcrumb.Item>
-		)
-	};
+    let isLast = pathParts.indexOf(pathParts[i]) === pathParts.length - 1
+    breadcrumbs.push(
+      <Breadcrumb.Item key={i} active={isLast} href={finalPath} linkAs={BreadcrumbLink}>{name}</Breadcrumb.Item>
+    )
+  };
 
-	return (
-		<Breadcrumb>
-			{breadcrumbs}
-		</Breadcrumb>
-	)
+  return (
+    <Breadcrumb>
+      {breadcrumbs}
+    </Breadcrumb>
+  )
 }
 
 export default Breadcrumbs;

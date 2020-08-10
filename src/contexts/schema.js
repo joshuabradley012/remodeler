@@ -3,22 +3,22 @@ import { schema } from 'normalizr';
 const parentChildId = (value, parent) => `${parent.id}-${value.id}`;
 
 const style = new schema.Entity('styles', {},
-	{
-		idAttribute: parentChildId
-	}
+  {
+    idAttribute: parentChildId
+  }
 );
 
 const item = new schema.Entity('items',
-	{
-		styles: [style]
-	},
-	{
-		idAttribute: parentChildId
-	}
+  {
+    styles: [style]
+  },
+  {
+    idAttribute: parentChildId
+  }
 );
 
 const project = new schema.Entity('projects', {
-	items: [item]
+  items: [item]
 });
 
 const projectSchema = { projects: [project] };
