@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env) => {
 	const currentPath = path.join(__dirname);
@@ -28,6 +29,14 @@ module.exports = (env) => {
 					loader: 'babel-loader',
 					options: { presets: ['@babel/env'] }
 				},
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          loader: 'file-loader',
+        },
+        {
+          test: /\.svg$/i,
+          use: ['@svgr/webpack'],
+        },
 			],
 		},
     resolve: { extensions: ['*', '.js', '.jsx'] },
@@ -41,6 +50,14 @@ module.exports = (env) => {
 		plugins: [
 			new webpack.DefinePlugin(envKeys),
 			new CleanWebpackPlugin(),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: 'src/assets',
+            to: 'assets',
+          },
+        ],
+      }),
 			new HtmlWebpackPlugin({
 				template: "./src/index.html",
 				title: 'Remodeler',

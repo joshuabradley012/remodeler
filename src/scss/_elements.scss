@@ -1,105 +1,123 @@
 html, body {
-	background: $gray-100;
-}
-
-.main {
-	padding-top: $spacer * 1.5;
-	padding-bottom: $spacer * 4;
-}
-
-.sidenav {
-	flex: 0 0 12rem;
-
-	.nav {
-		.nav-link {
-			border-top-right-radius: $spacer;
-			border-bottom-right-radius: $spacer;
-			color: $body-color;
-			margin: 0 (-$spacer);
-			padding: $spacer * .25 $spacer;
-
-			&.active {
-				background: $gray-200;
-			}
-		}
-	}
-}
-
-.nav-tabs {
-	border-bottom-width: 2px;
-
-	.nav-item {
-		margin-bottom: -2px;
-	}
-
-	.nav-link {
-		border: 0;
-		color: $gray-600;
-		margin-right: $spacer * 2;
-		padding: $spacer * .5 0;
-		outline: 0;
-
-		&.active {
-			background-color: transparent;
-			border-bottom: 2px solid $black;
-			color: $black;
-		}
-	}
-}
-
-.panel {
 	background: $white;
-	border: $border-width solid $border-color;
-	border-radius: $border-radius;
-
-//	@include media-breakpoint-down(xs) {
-//		border-radius: 0;
-//		border-left: 0;
-//		border-right: 0;
-//		margin-left: -$grid-gutter-width * .5;
-//		margin-right: -$grid-gutter-width * .5;
-//	}
 }
 
-.panel__row {
-	border-bottom: $border-width solid $border-color;
-	padding: ($spacer * .375) ($spacer * .75);
-
-	&:last-child {
-		border-bottom: 0;
-	}
-
-	&--link {
-		@extend .panel__row;
-		color: $body-color;
-		display: block;
-
-		&:hover {
-			background: $gray-200;
-			color: $body-color;
-		}
-	}
-
-//	@include media-breakpoint-down(xs) {
-//		padding: ($spacer * .5) $spacer;
-//	}
+::placeholder {
+  color: $gray-800;
 }
 
-.breadcrumb {
-	padding: 0;
-	background-color: transparent;
+.app-bar {
+  background: #fff;
+  display: flex;
+  padding: $spacer;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
-	.breadcrumb-item {
-		&.active {
-			color: #333;
-		}
+  #search {
+    border-radius: 2rem;
+    flex: 1 0 auto;
+    margin: 0 $spacer;
 
-		& + .breadcrumb-item:before {
-			content: '>';
-		}
+    input {
+      background: $gray-200;
+      border: 0;
+      border-radius: 2rem;
+      padding: 0 1rem;
+      height: 100%;
+      width: 100%;
 
-		a {
-			color: $gray-600;
-		}
-	}
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(0, 132, 233, .5);
+      }
+    }
+  }
+}
+
+.app-shell {
+  padding-top: 4.5rem;
+}
+
+.nav-button {
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  display: block;
+  height: 2.5rem;
+  padding: .675rem;
+  width: 2.5rem;
+
+  &:hover {
+    background: $gray-200;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .button-icon {
+    display: block;
+    fill: $gray-600;
+    width: 100%;
+    height: 100%;
+
+    &.logo {
+      fill: initial;
+    }
+  }
+}
+
+.dashboard {
+  padding: 0 2 * $spacer;
+
+  .dashboard-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, $project-width);
+    grid-gap: $spacer;
+    justify-content: center;
+  }
+}
+
+.project {
+  font-size: .8rem;
+  margin: 0 0 2 * $spacer;
+
+  .project-link {
+    display: block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .project-image {
+    border-radius: 1rem;
+    margin-bottom: .5 * $spacer;
+    min-width: 100%;
+  }
+
+  .project-text {
+    margin: 0 .5 * $spacer;
+    position: relative;
+
+    .project-name {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    .project-status {
+      position: absolute;
+      height: 1rem;
+      width: 1rem;
+      background: grey;
+      right: 0;
+      top: 0;
+      border-radius: 50%;
+    }
+
+    .project-budget {
+      margin: 0;
+    }
+  }
 }
