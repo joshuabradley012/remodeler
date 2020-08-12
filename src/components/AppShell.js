@@ -86,6 +86,8 @@ const projects = [
 const useResize = ref => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
+  const [innerWidth, setInnerWidth] = useState(0);
+  const [innerHeight, setInnerHeight] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -96,8 +98,10 @@ const useResize = ref => {
       const height = ref.current.clientHeight
         - parseInt(styles.paddingTop)
         - parseInt(styles.paddingBottom);
-      setWidth(width);
-      setHeight(height);
+      setWidth(ref.current.offsetWidth);
+      setHeight(ref.current.offsetHeight);
+      setInnerWidth(width);
+      setInnerHeight(height);
     };
 
     if (ref.current) {
@@ -111,7 +115,7 @@ const useResize = ref => {
     };
   }, [ref]);
 
-  return { width, height };
+  return { width, height, innerWidth, innerHeight };
 };
 
 const Project = ({ item }) => {
@@ -133,13 +137,13 @@ const Project = ({ item }) => {
 const MasonryGrid = ({ children = [], minColumns = 2, itemWidth = 240, gridGap = 16 }) => {
   const [columnCount, setColumnCount] = useState(0);
   const ref = useRef(null);
-  const { width } = useResize(ref);
+  const { innerWidth } = useResize(ref);
 
   const calculateColumnCount = () => {
-    let columns = Math.floor(width / itemWidth);
+    let columns = Math.floor(innerWidth / itemWidth);
     const widthWithGap = (itemWidth * columns) + (gridGap * (columns - 1));
 
-    if (widthWithGap > width) {
+    if (widthWithGap > innerWidth) {
       columns--;
     }
 
@@ -174,7 +178,7 @@ const MasonryGrid = ({ children = [], minColumns = 2, itemWidth = 240, gridGap =
 
   useEffect(() => {
     calculateColumnCount();
-  }, [width]);
+  }, [innerWidth]);
 
   const gridStyle = {
     gridTemplateColumns: `repeat(auto-fill, ${itemWidth}px)`,
