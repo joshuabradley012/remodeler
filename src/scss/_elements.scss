@@ -18,7 +18,7 @@ html, body {
   #search {
     border-radius: 2rem;
     flex: 1 1 auto;
-    margin: 0 $spacer;
+    margin: 0 .675rem;
 
     input {
       background: $gray-200;
@@ -55,6 +55,8 @@ html, body {
 
   &:focus {
     outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 132, 233, .5);
+    z-index: 1;
   }
 
   .button-icon {
@@ -62,6 +64,10 @@ html, body {
     fill: $gray-600;
     width: 100%;
     height: 100%;
+
+    &.black {
+      fill: $black;
+    }
   }
 
   &.logo {
@@ -70,6 +76,37 @@ html, body {
     .button-icon {
       fill: initial;
     }
+  }
+
+  &.toggle {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+.nav-link {
+  background: transparent;
+  border-radius: 2rem;
+  display: inline-block;
+  font-weight: 900;
+  line-height: 2.5rem;
+  padding: 0 .825rem;
+
+  &:hover {
+    background: $gray-200;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 132, 233, .5);
+    z-index: 1;
+  }
+
+  &.active {
+    background: $black;
+    color: #fff;
   }
 }
 
@@ -83,34 +120,47 @@ html, body {
   }
 }
 
-.project {
+.project-dashboard {
+  .project-title {
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .project-actions {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+  }
+}
+
+.project-item {
+  display: block;
   font-size: .8rem;
   margin: 0 0 2 * $spacer;
 
-  .project-link {
-    display: block;
-
-    &:hover {
-      text-decoration: none;
-    }
+  &:hover {
+    text-decoration: none;
   }
 
-  .project-image {
+  .project-item-image {
     border-radius: 1rem;
     margin-bottom: .5 * $spacer;
     width: 100%;
   }
 
-  .project-text {
+  .project-item-text {
     margin: 0 .5 * $spacer;
     position: relative;
 
-    .project-name {
+    .project-item-name {
       font-size: 1rem;
       margin-bottom: 0;
     }
 
-    .project-status {
+    .project-item-status {
       position: absolute;
       height: 1rem;
       width: 1rem;
@@ -120,7 +170,59 @@ html, body {
       border-radius: 50%;
     }
 
-    .project-budget {
+    .project-item-budget {
+      margin: 0;
+    }
+  }
+}
+
+.shop-dashboard {
+  .shop-title {
+    font-weight: 900;
+    line-height: 1;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .shop-actions {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+  }
+}
+
+.shop-item {
+  display: block;
+  font-size: .8rem;
+  margin: 0 0 2 * $spacer;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  .shop-item-image {
+    border-radius: 1rem;
+    margin-bottom: .5 * $spacer;
+    width: 100%;
+  }
+
+  .shop-item-text {
+    margin: 0 .5 * $spacer;
+    position: relative;
+
+    .shop-item-price {
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .shop-item-name {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    .shop-item-supplier {
       margin: 0;
     }
   }
